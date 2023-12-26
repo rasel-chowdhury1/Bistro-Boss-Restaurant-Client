@@ -18,7 +18,7 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const Category = () => {
     return (
-        <div>
+        <div className='w-4/5 mx-auto'>
             <section>
                 <SectionTitle
                   subHeading={"From 11:00am to 10:00pm"}
@@ -27,7 +27,7 @@ const Category = () => {
             </section>
             <Swiper
                 slidesPerView={4}
-                spaceBetween={2}
+                spaceBetween={20}
                 centeredSlides={true}
                 pagination={{
                 clickable: true,

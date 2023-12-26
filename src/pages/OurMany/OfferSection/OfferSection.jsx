@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import MenuItem from '../../../Shared/MenuItem/MenuItem';
 import useCustom from '../../../CustomHook/useCustom';
+import MenuItem from '../../../Shared/MenuItem/MenuItem';
 import FullMenu from '../../../Shared/FullMenu/FullMenu';
 
-const PopularMenu = () => {
 
-    const [menu] = useCustom()
-    const popular = menu.filter(item => item.category === 'popular');
+const OfferSection = () => {
+    
+    const [menu] = useCustom();
+    const offer = menu.filter(item => item.category === "offered");
 
     return (
         <section className='mb-12 w-4/5 mx-auto'>
             <SectionTitle
-              subHeading={"From Our Menu"}
-              heading={"Popular Items"}
+              heading={"today's offer"}
+              subHeading={"Don't miss"}
             ></SectionTitle>
             <FullMenu
-              data = {popular}
-              btnName={"View Full Menu"}
+              data = {offer}
+              btnName={"Order Your Favourite Food"}
             ></FullMenu>
-            
         </section>
     );
 };
 
-export default PopularMenu;
+export default OfferSection;
