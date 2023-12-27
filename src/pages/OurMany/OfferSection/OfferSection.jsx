@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useCustom from '../../../CustomHook/useCustom';
-import MenuItem from '../../../Shared/MenuItem/MenuItem';
 import FullMenu from '../../../Shared/FullMenu/FullMenu';
 
 
@@ -18,6 +17,7 @@ const OfferSection = () => {
             ></SectionTitle>
             <FullMenu
               data = {offer}
+              title={"offer"}
               btnName={"Order Your Favourite Food"}
             ></FullMenu>
         </section>

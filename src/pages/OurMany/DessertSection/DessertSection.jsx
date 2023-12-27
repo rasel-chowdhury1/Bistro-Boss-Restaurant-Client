@@ -15,6 +15,7 @@ const DessertSection = ({img}) => {
             ></BannerSection>
             <FullMenu
              data = {dessert}
+             title = {"dessert"}
              btnName = {"Order Your Fabourite Food"}
             ></FullMenu>
         </div>

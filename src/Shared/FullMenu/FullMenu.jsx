@@ -1,7 +1,8 @@
 import React from 'react';
 import MenuItem from '../MenuItem/MenuItem';
+import { Link } from 'react-router-dom';
 
-const FullMenu = ({data,btnName}) => {
+const FullMenu = ({data,title,btnName}) => {
     return (
         <section className='mb-12 w-4/5 mx-auto mt-20'>
             <div className='grid md:grid-cols-2 gap-10'>
@@ -11,7 +12,7 @@ const FullMenu = ({data,btnName}) => {
                     ></MenuItem>)}
             </div>
             <div className="text-center">
-               <button className="btn btn-outline border-0 border-b-4 mt-4 ">{btnName}</button>
+               <Link to={`/shop/${title}`} className="btn btn-outline border-0 border-b-4 mt-4 ">{btnName}</Link>
             </div>
         </section>
     );
