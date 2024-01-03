@@ -11,7 +11,7 @@ const ShopList = () => {
     const {category} = useParams();
 
     const currentIndex = categoryList.indexOf(category) || 0;
-    console.log(currentIndex)
+    // console.log(currentIndex)
 
     const [menu] = useCustom();
 

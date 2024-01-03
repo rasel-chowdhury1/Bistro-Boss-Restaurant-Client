@@ -1,16 +1,63 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
+import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Card = ({data,btn}) => {
+    const {_id,recipe,name,image,price} = data;
+    console.log(data)
+    const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location)
+
+    const handleAddToCart = data =>{
+         console.log(data);
+         if(user && user.email){
+            const cartItem = {menuItemId: _id, name,image,price, email: user.email}
+            fetch('http://localhost:3000/carts',{
+                method: 'POST',
+                headers: {
+                    'content-type': "application/json"
+                },
+                body: JSON.stringify(cartItem)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    swal("Successfully added in cart")
+                }
+            })
+         }
+         else{
+            Swal.fire({
+                title: "Please Login",
+                text: "if add to cart of product",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: "No",
+                confirmButtonText: "Yes"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/login', {state: {from: location}} )
+                }
+              });
+         }
+    }
     return (
         <div className="card  glass">
             <figure>
-                <img src={data.image} alt="car!"/>
+                <img src={image} alt="car!"/>
             </figure>
             <div className="card-body">
-                <h2 className="card-title text-2xl justify-center">{data.name}</h2>
-                <p className='text-xl justify-center'>{data.recipe}</p>
+                <p>Price: {price}</p>
+                <h2 className="card-title text-2xl justify-center">{name}</h2>
+                <p className='text-xl justify-center'>{recipe}</p>
                 <div className="card-actions justify-center">
-                    <button className="btn btn-outline bg-black border-0 border-b-4 mt-4 text-yellow-600 py-4 px-6 uppercase">{btn}</button>
+                    <button onClick={() => handleAddToCart(data)} className="btn btn-outline bg-black border-0 border-b-4 mt-4 text-yellow-600 py-4 px-6 uppercase">{btn}</button>
                 </div>
             </div>
         </div>
