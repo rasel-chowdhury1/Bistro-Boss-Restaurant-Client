@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import swal from 'sweetalert';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 
 
@@ -92,6 +93,7 @@ const Login = () => {
                             <p className="text-center text-red-500">{error}</p>
                             <p className='text-center text-orange-400'><span><Link to='/register'>New here?</Link></span>Create a New Account</p>
                             <p className='text-center text-black-400'>Or sign in with</p>
+                            <SocialLogin></SocialLogin>
                         </div>
 
                         <div className="">

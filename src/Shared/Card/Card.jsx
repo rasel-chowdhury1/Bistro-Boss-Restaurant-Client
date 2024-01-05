@@ -3,11 +3,13 @@ import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useCart from '../../CustomHook/useCart';
 
 const Card = ({data,btn}) => {
     const {_id,recipe,name,image,price} = data;
     console.log(data)
     const {user} = useContext(AuthContext);
+    const [,refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
     console.log(location)
@@ -25,6 +27,7 @@ const Card = ({data,btn}) => {
             })
             .then(res => res.json())
             .then(data => {
+                refetch() //refetch cart to update the nuber of items in the cart
                 if(data.insertedId){
                     swal("Successfully added in cart")
                 }

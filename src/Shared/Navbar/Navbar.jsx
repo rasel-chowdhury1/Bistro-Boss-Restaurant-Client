@@ -2,11 +2,14 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
 import { TiShoppingCart } from "react-icons/ti";
+import useCart from '../../CustomHook/useCart';
 
 const Navbar = () => {
 
     const {user,Logout} = useContext(AuthContext);
-    console.log('user is - ',user)
+    const [cart] = useCart();
+    // console.log(cart)
+    // console.log('user is - ',user)
     const navOptions = <>
        <li><Link to='/'>HOME</Link></li>
        <li><Link to="/contact Us">CONTACT US</Link></li>
@@ -14,10 +17,10 @@ const Navbar = () => {
        <li><Link to="/menu">OUR MENU</Link></li>
        <li><Link to="/shop/salad">OUR SHOP</Link></li>
        <li><Link to="/dashboard">Cart</Link></li>
-       <li><Link to='/'>
+       <li><Link to='/dashboard/mycart'>
          <button className="btn">
             <TiShoppingCart/>
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
          </button>
         </Link></li>
        

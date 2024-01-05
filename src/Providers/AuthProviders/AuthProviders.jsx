@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { createContext } from "react";
-import {getAuth,createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
+import {getAuth,createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
 import app from "../../Firebase/Firebase.config";
 import { useState } from 'react';
+import axios from 'axios';
 
 export const AuthContext = createContext(null);
 
@@ -12,6 +13,8 @@ const AuthProviders = ({children}) => {
 
     const [user,setUser] = useState('');
     const [loading,setLoading] = useState(true);
+
+    const provider = new GoogleAuthProvider();
     
     const createUser = (email,password) =>{
         setLoading(true)
@@ -21,6 +24,11 @@ const AuthProviders = ({children}) => {
     const SignIn = (email,password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth,email,password);
+    }
+
+    const GoogleSignIn = () =>{
+        setLoading(true);
+        return signInWithPopup(auth,provider);
     }
 
     const Logout = () =>{
@@ -39,7 +47,21 @@ const AuthProviders = ({children}) => {
      useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
             setUser(currentUser);
-            setLoading(false);
+
+            //get and set token
+            if(currentUser){
+                axios.post('http://localhost:3000/jwt', {email: currentUser.email})
+                .then(data => {
+                    // console.log(data.data.token)
+                    localStorage.setItem('access-token', data.data.token)
+                    setLoading(false);
+                })
+            }
+            else{
+                localStorage.removeItem('access-token')
+            }
+
+            
         })
 
         return () =>{
@@ -52,6 +74,7 @@ const AuthProviders = ({children}) => {
         loading,
         createUser,
         SignIn,
+        GoogleSignIn,
         Logout,
         updateUserProfile
     }

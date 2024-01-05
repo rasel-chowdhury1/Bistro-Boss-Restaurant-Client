@@ -3,6 +3,7 @@ import registerImg from '../../assets/others/authentication2.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
 import swal from 'sweetalert';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Register = () => {
     const [error,setError] = useState('');
@@ -46,10 +47,25 @@ const Register = () => {
             console.log(result.user);
             updateUserProfile(name,photo)
             .then( () =>{
-                console.log('user profile info updated')
-                swal("Successfully Created")
-                form.reset();
-                navigate('/');
+                const saveUser = {name: name, email: email}
+                
+                fetch('http://localhost:3000/users',{
+                    method: "POST",
+                    headers: {
+                        "content-type": 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data =>{
+                        console.log(data);
+                        if(data.insertedId){
+                            console.log('user profile info updated')
+                            swal("Successfully Created")
+                            form.reset();
+                            navigate('/');
+                        }
+                    })
             })
             .catch( (error) =>{
                 console.log(error)
@@ -120,6 +136,7 @@ const Register = () => {
                             <p className='text-red-500 text-center py-2'>{error}</p>
                             <p className='text-center text-orange-400'><span><Link to='/login'>Already registered?</Link></span> Go to log in</p>
                             <p className='text-center text-black-400'>Or sign in with</p>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </div>
                 </div>
