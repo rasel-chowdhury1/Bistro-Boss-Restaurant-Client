@@ -1,10 +1,10 @@
 import React from 'react';
 import BannerSection from '../../../Shared/BannerSection/BannerSection';
 import FullMenu from '../../../Shared/FullMenu/FullMenu';
-import useCustom from '../../../CustomHook/useCustom';
+import useMenu from '../../../CustomHook/useMenu';
 
 const SoupSection = ({img}) => {
-    const [menu] = useCustom();
+    const [menu] = useMenu();
 
     const soups = menu.filter(item => item.category === "soup")
 

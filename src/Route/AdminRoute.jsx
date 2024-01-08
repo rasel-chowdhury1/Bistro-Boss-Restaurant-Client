@@ -3,9 +3,14 @@ import { AuthContext } from '../Providers/AuthProviders/AuthProviders';
 import { Navigate, useLocation } from 'react-router-dom';
 import useAdmin from '../CustomHook/useAdmin';
 
+
+
 const AdminRoute = ({children}) => {
     const {user,loading} = useContext(AuthContext);
     const [isAdmin, isAdminLoading] = useAdmin();
+    // console.log(user,loading);
+    // console.log(isAdmin, isAdminLoading);
+
     const location = useLocation();
 
     if(loading || isAdminLoading){

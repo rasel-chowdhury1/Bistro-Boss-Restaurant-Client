@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuItem from '../../../Shared/MenuItem/MenuItem';
-import useCustom from '../../../CustomHook/useCustom';
 import FullMenu from '../../../Shared/FullMenu/FullMenu';
+import useMenu from '../../../CustomHook/useMenu';
 
 const PopularMenu = () => {
 
-    const [menu] = useCustom()
+    const [menu] = useMenu()
     const popular = menu.filter(item => item.category === 'popular');
 
     return (

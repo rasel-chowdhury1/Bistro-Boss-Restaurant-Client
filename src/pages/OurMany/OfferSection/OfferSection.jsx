@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import useCustom from '../../../CustomHook/useCustom';
 import FullMenu from '../../../Shared/FullMenu/FullMenu';
+import useMenu from '../../../CustomHook/useMenu';
 
 
 const OfferSection = () => {
     
-    const [menu] = useCustom();
+    const [menu] = useMenu();
     const offer = menu.filter(item => item.category === "offered");
 
     return (

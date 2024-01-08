@@ -26,6 +26,8 @@ const AllUsers = () => {
         }
        })
 
+       console.log(users)
+
     const handleMakeAdmin = user => {
         console.log(user._id)
         fetch(`http://localhost:3000/users/admin/${user._id}`, {
@@ -45,6 +47,8 @@ const AllUsers = () => {
           }
         })
     }
+
+    
     return (
         <div>
             <Helmet>

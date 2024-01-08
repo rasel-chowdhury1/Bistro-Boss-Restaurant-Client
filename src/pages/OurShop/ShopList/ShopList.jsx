@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import useCustom from '../../../CustomHook/useCustom';
 import CardList from '../../../Shared/CardList/CardList';
 import { useParams } from 'react-router-dom';
+import useMenu from '../../../CustomHook/useMenu';
 
 const ShopList = () => {
     const categoryList = ["salad","pizza","soup","dessert","drinks"]
@@ -13,7 +13,7 @@ const ShopList = () => {
     const currentIndex = categoryList.indexOf(category) || 0;
     // console.log(currentIndex)
 
-    const [menu] = useCustom();
+    const [menu] = useMenu();
 
     const salad = menu.filter(item => item.category === "salad");
     const pizza = menu.filter(item => item.category === "pizza");
