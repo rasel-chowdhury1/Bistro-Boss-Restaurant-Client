@@ -17,7 +17,7 @@ const OfferSection = () => {
             ></SectionTitle>
             <FullMenu
               data = {offer}
-              title={"offer"}
+              title={"salad"}
               btnName={"Order Your Favourite Food"}
             ></FullMenu>
         </section>

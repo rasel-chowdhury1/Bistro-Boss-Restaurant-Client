@@ -39,7 +39,7 @@ const Login = () => {
         })
         .catch(error =>{
             console.log(error.message)
-            setError(error.message)
+            setError("Please! provide validate email and password...")
         })
     }
     
@@ -90,7 +90,7 @@ const Login = () => {
                                   <input disabled={disabled} type="submit" className="btn btn-warning" value="Sign In" />
                                 </div>
                             </form>
-                            <p className="text-center text-red-500">{error}</p>
+                            <p className="text-center text-xl text-red-500">{error}</p>
                             <p className='text-center text-orange-400'><span><Link to='/register'>New here?</Link></span>Create a New Account</p>
                             <p className='text-center text-black-400'>Or sign in with</p>
                             <SocialLogin></SocialLogin>

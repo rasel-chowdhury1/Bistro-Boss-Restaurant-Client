@@ -23,7 +23,7 @@ const Dashboard = () => {
         <div>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content flex flex-col">
                     
                     <Outlet></Outlet>
 
@@ -40,10 +40,12 @@ const Dashboard = () => {
                         <li><NavLink  to="/" ><IoHome /> Admin Home</NavLink></li>
                         <li><NavLink  to="/dashboard/addItem"><FaUtensils /> Add Items</NavLink ></li>
                         <li><NavLink  to="/dashboard/manageItems"><IoMdWallet /> Manage Items</NavLink ></li>
+                        <li><NavLink  to="/dashboard/mycart"><TiShoppingCart/> MyCart 
+                        <div className="badge badge-secondary">+{cart?.length || 0}</div></NavLink ></li>
                         <li><NavLink  to="/"><FaBook /> Manage Bookings</NavLink ></li>
                         <li><NavLink  to="/dashboard/allusers"><FaUsers /> All Users</NavLink ></li>
                         </>
-                        :  <><li><NavLink  to="/" ><IoHome /> User Home</NavLink></li>
+                        :  <><li><NavLink  to="/dashboard/userhome" ><IoHome /> User Home</NavLink></li>
                         <li><NavLink  to="/"><FaCalendarAlt /> Reservation</NavLink ></li>
                         <li><NavLink  to="/"><IoMdWallet /> Payment History</NavLink ></li>
                         <li><NavLink  to="/dashboard/mycart"><TiShoppingCart/> MyCart 
