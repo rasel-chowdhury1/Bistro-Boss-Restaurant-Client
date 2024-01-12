@@ -13,7 +13,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_paymentgateway_PK);
 const Payment = () => {
     const [cart] = useCart();
     const total = cart.reduce( (sum,item) => sum + item.price ,0)
-    console.log(total);
+    // console.log(total);
     const price = parseFloat(total.toFixed(2))
     return (
         <div>

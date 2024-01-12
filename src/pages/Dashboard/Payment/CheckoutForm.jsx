@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from './../../../CustomHook/useAxiosSecure';
 import useAuth from './../../../CustomHook/useAuth';
 import './CheckoutForm.css';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheckoutForm = ({cart, price}) => {
@@ -14,12 +16,13 @@ const CheckoutForm = ({cart, price}) => {
     const [clientSecret, setClientSecret] = useState('')
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('')
+    const navigate = useNavigate()
 
     useEffect( () =>{
        if(price > 0){
           axiosSecure.post('/create-payment-intent', {price})
         .then(res =>{
-          console.log(res.data.clientSecret)
+          // console.log(res.data.clientSecret)
           setClientSecret(res.data.clientSecret)
         })
        }
@@ -94,11 +97,15 @@ const CheckoutForm = ({cart, price}) => {
          }
          axiosSecure.post('/payments', payment)
          .then(res =>{
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.result.insertedId){
-                //Display confirm
-                alert("successfully added")
+              Swal.fire({
+                title: "Thank You!",
+                text: "Your payment successfully done!",
+                icon: "success"
+              });
             }
+            navigate('/dashboard/mycart');
          })
       }
 

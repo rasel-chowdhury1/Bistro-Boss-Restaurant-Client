@@ -37,9 +37,13 @@ const SocialLogin = () => {
 
     return (
         <div className='flex justify-center mx-auto my-3'>
-            <button  className="btn btn-circle btn-outline btn-sm mr-4"><BsFacebook /></button>
-            <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline btn-sm mx-4"><FcGoogle /></button>
-            <button className="btn btn-circle btn-outline btn-sm mx-5"><FaGithub /></button>
+            {/* <button  className="btn btn-circle btn-outline btn-sm mr-4"><BsFacebook /></button> */}
+            <div onClick={handleGoogleSignIn}  className='flex bg-yellow-400 rounded-md p-2'>
+                <div><button className="btn btn-circle btn-outline btn-sm mx-4"><FcGoogle /></button></div>
+                <div className='text-gray-800'>Continue with google</div>
+            </div>
+            
+            {/* <button className="btn btn-circle btn-outline btn-sm mx-5"><FaGithub /></button> */}
          </div>
     );
 };

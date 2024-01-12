@@ -14,11 +14,17 @@ import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddItem from "../pages/AdminDashboard/AddItem/AddItem";
 import AdminRoute from "./AdminRoute";
-import ManageItem from "../pages/Dashboard/ManageItem/ManageItem";
+import ManageItem from "../pages/AdminDashboard/ManageItem/ManageItem";
 import ContactUs from "../pages/Home/ContactUs/ContactUs";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
-import AdminHome from "../pages/AdminDashboard/AddItem/AdminHome/AdminHome";
+import AdminHome from "../pages/AdminDashboard/AdminHome/AdminHome";
+import { Elements } from '@stripe/react-stripe-js';
+import AddReview from "../pages/Dashboard/AddReview/AddReview";
+import ManageBooking from "../pages/Dashboard/ManageBooking/ManageBooking";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import ErrrorPage from "../pages/ErrrorPage/ErrrorPage";
+import Reservation from "../pages/Dashboard/Reservation/Reservation";
 
   const router = createBrowserRouter([
     {
@@ -71,6 +77,22 @@ import AdminHome from "../pages/AdminDashboard/AddItem/AdminHome/AdminHome";
           path: "payment",
           element: <Payment></Payment>
         },
+        {
+          path: "addReview",
+          element: <AddReview></AddReview>
+        },
+        {
+          path: "manageBooking",
+          element: <ManageBooking></ManageBooking>
+        },
+        {
+          path: "paymentHistory",
+          element: <PaymentHistory></PaymentHistory>
+        },
+        {
+          path: "reservation",
+          element: <Reservation></Reservation>
+        },
 
         //admin routes
         {
@@ -90,6 +112,10 @@ import AdminHome from "../pages/AdminDashboard/AddItem/AdminHome/AdminHome";
           element: <AdminRoute><ManageItem></ManageItem></AdminRoute>
         }
       ]
+    },
+    {
+      path: '*',
+      element: <ErrrorPage></ErrrorPage>
     }
     
   ]);
