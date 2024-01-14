@@ -1,14 +1,58 @@
 import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useMenu from '../../../CustomHook/useMenu';
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaAngleDoubleRight, FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import useAxiosSecure from './../../../CustomHook/useAxiosSecure';
+import { useForm } from 'react-hook-form';
 
+const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const ManageItem = () => {
     const [menu, , refetch] = useMenu();
     const [axiosSecure] = useAxiosSecure();
+    const { register, handleSubmit, formState: { errors },reset} = useForm();
+
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+
+    const onSubmit = data => {
+        console.log(data)
+        console.log('this is update form')
+        // const formData = new FormData()
+        // formData.append('image', data.image[0])
+
+        // fetch(img_hosting_url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        // .then(res => res.json())
+        // .then(imgResponse => {
+        //     if(imgResponse.success){
+        //         const imgURL = imgResponse.data.display_url;
+        //         const {name,category,recipe,price} = data;
+        //         const newItem = {name,price: parseFloat(price),category,recipe,image:imgURL}
+        //         console.log(newItem);
+
+        //         axiosSecure.post('/menu',newItem)
+        //         .then(data =>{
+        //             if(data.data.insertedId){
+        //                 Swal.fire({
+        //                     position: "top-end",
+        //                     icon: "success",
+        //                     title: "Successfully Added Item",
+        //                     showConfirmButton: false,
+        //                     timer: 1500
+        //                   });
+        //                   reset()
+        //             }
+        //         })
+        //     }
+        // })
+    };
+
+    const handleUpdateButton = () =>{
+        alert('clicked update button')
+    }
 
     const handleDeleteButton = (id) =>{
         Swal.fire({
@@ -36,6 +80,8 @@ const ManageItem = () => {
             }
         })
     }
+
+
     return (
         <div className='w-full'>
             <SectionTitle subHeading="Hurry Up" heading="Manage All Items"/>
@@ -76,12 +122,13 @@ const ManageItem = () => {
                             <td>{item.category}</td>
                             <td>${item.price}</td>
                             <td>
-                            <button className="btn btn-ghost btn-xs text-xl text-orange-400"><FaEdit /></button>
+                               <button className="btn btn-ghost btn-xs text-xl text-orange-400"><FaEdit /></button>
                             </td>
                             <td>
                             <button onClick={()=>handleDeleteButton(item._id)} className="btn btn-ghost btn-xs text-xl text-orange-400"><FaTrashAlt /></button>
                             </td>
                         </tr>)}
+                        
                         
                     </tbody>
                     

@@ -11,7 +11,7 @@ const img_hosting_token = import.meta.env.VITE_Image_Upload_Token
 
 const AddItem = () => {
     const [axiosSecure] = useAxiosSecure()
-    console.log("axiosSecure - ", axiosSecure)
+    // console.log("axiosSecure - ", axiosSecure)
     const { register, handleSubmit, formState: { errors },reset} = useForm();
 
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`

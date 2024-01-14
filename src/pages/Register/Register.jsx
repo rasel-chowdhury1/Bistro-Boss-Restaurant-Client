@@ -7,6 +7,7 @@ import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Register = () => {
     const [error,setError] = useState('');
+    
 
     const navigate = useNavigate();
     const {createUser,updateUserProfile,loading} = useContext(AuthContext);
@@ -19,7 +20,7 @@ const Register = () => {
        const email = form.email.value;
        const password = form.password.value;
        const confirm = form.confirm.value;
-       console.log(email,password,confirm)
+       const type = form.type.value;
        setError('');
 
        if(!/(?=.*[a-zA-Z])/.test(password)){
@@ -47,7 +48,7 @@ const Register = () => {
             console.log(result.user);
             updateUserProfile(name,photo)
             .then( () =>{
-                const saveUser = {name: name, email: email}
+                const saveUser = {name: name, email: email, roll: type}
                 
                 fetch('http://localhost:3000/users',{
                     method: "POST",
@@ -124,8 +125,19 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Confirm Password</span>
                                     </label>
-                                    <input type="text" name="confirm" placeholder="Confirm Password" className="input input-bordered" required />
+                                    <input type="password" name="confirm" placeholder="Confirm Password" className="input input-bordered" required />
                                 </div>
+                                
+                                <label className="form-control w-full max-w-xs">
+                                    <div className="label">
+                                        <span className="label-text">Select Type</span>
+                                    </div>
+                                    <select name="type" className="select select-bordered" required>
+                                        <option disabled selected>Pick one</option>
+                                        <option value="admin">Admin</option>
+                                        <option value='user'>User</option>
+                                    </select>
+                                </label>
 
                                 <div className="form-control mt-6">
                                  <button className="btn btn-warning">

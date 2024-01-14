@@ -4,8 +4,36 @@ import img from "../../../assets/contact/banner.jpg";
 import BannerSection from '../../../Shared/BannerSection/BannerSection';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { FaPhone } from "react-icons/fa6";
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../../CustomHook/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
+    const [axiosSecure] = useAxiosSecure()
+    const { register,handleSubmit,formState: { errors },reset} = useForm()
+    const navigate = useNavigate()
+
+    const onSubmit = (data) => {
+        console.log(data)
+        const date = new Date();
+        const  {name, email, phone, message} = data;
+        const newMail = {name,email,phone,message,date};
+        // console.log(newMail);
+        axiosSecure.post('/mail',newMail)
+        .then(data => {
+            if(data.data.insertedId){
+                reset()
+                Swal.fire({
+                    title: "Thank You!!!",
+                    text: "We are recived Your mail!",
+                    icon: "success"
+                  });
+                navigate('/')
+            }
+        })
+    }
+
     return (
         <div>
             <Helmet>
@@ -60,19 +88,21 @@ const ContactUs = () => {
             ></SectionTitle>
 
             <div className='w-3/5 mx-auto my-4 bg-[#D9D9D9]'>
-               <div className='p-6 '>
+               <form onSubmit={handleSubmit(onSubmit)} className='p-6 '>
                 <div className='flex'>
                     <label className="form-control w-full mr-4">
                         <div className="label">
                             <span className="label-text">Name*</span>
                         </div>
-                        <input type="text" placeholder="Type here" className="input input-bordered w-full " />
+                        <input type="text" {...register("name", { required: true })} placeholder="Type here" className="input input-bordered w-full " />
+                        {errors.name&& <span>Enter your name</span>}
                     </label>
                     <label className="form-control w-full ">
                         <div className="label">
                             <span className="label-text">Email*</span>
                         </div>
-                        <input type="text" placeholder="Type here" className="input input-bordered w-full " />
+                        <input type="email" {...register("email", { required: true })} placeholder="Type here" className="input input-bordered w-full " />
+                        {errors.email && <span>write email here</span>}
                     </label>
                 </div>
 
@@ -80,20 +110,23 @@ const ContactUs = () => {
                         <div className="label">
                             <span className="label-text">Phone*</span>
                         </div>
-                        <input type="text" placeholder="Type here" className="input input-bordered w-full" />
+                        <input type="number" {...register("phone", { required: true })} placeholder="Type here" className="input input-bordered w-full" />
+                        {errors.phone && <span>write phone number here</span>}
                     </label>
 
                 <label className="form-control w-full">
                 <div className="label">
                     <span className="label-text">Message*</span>
                 </div>
-                <textarea className="textarea textarea-bordered h-24  mb-20" placeholder="Bio"></textarea>
+                <textarea {...register("message", { required: true })} className="textarea textarea-bordered h-24  mb-20" placeholder="Bio"></textarea>
+                {errors.message && <span>write detail here</span>}
                 </label>
 
                 <div className='w-[300px] mx-auto'>
-                  <button className="btn btn-wide bg-yellow-400 mx-auto">Message</button>
+                  <input type='submit' value="Message"  className="btn btn-wide bg-yellow-400 mx-auto"></input>
                 </div>
-               </div>
+
+               </form>
             </div>
              
         </div>

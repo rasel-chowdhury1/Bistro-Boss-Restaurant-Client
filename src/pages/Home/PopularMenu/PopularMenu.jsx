@@ -8,7 +8,7 @@ const PopularMenu = () => {
 
     const [menu] = useMenu()
     const popular = menu.filter(item => item.category === 'popular');
-
+    console.log(popular)
     return (
         <section className='mb-12 w-4/5 mx-auto'>
             <SectionTitle
@@ -17,6 +17,7 @@ const PopularMenu = () => {
             ></SectionTitle>
             <FullMenu
               data = {popular}
+              title={"popular"}
               btnName={"View Full Menu"}
             ></FullMenu>
             

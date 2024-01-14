@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import useMenu from '../../../CustomHook/useMenu';
 
 const ShopList = () => {
-    const categoryList = ["salad","pizza","soup","dessert","drinks"]
+    const categoryList = ["salad","pizza","soup","dessert","drinks","popular"]
     
     const {category} = useParams();
 
@@ -20,7 +20,8 @@ const ShopList = () => {
     const soup = menu.filter(item => item.category === "soup");
     const dessert = menu.filter(item => item.category === "dessert");
     const drinks = menu.filter(item => item.category === "drinks");
-
+    const popular = menu.filter(item => item.category === 'popular');
+    
     const [tabIndex,setTabIndex] = useState(currentIndex)
     
     return (
@@ -32,6 +33,7 @@ const ShopList = () => {
                     <Tab>SOUPS</Tab>
                     <Tab>DESSERTS</Tab>
                     <Tab>DRINKS</Tab>
+                    <Tab>POPULAR</Tab>
                 </TabList>
             
                 
@@ -62,6 +64,12 @@ const ShopList = () => {
                 <TabPanel>
                     <CardList
                      data={drinks}
+                     btnName={"Add to Cart"}
+                     ></CardList>
+                </TabPanel>
+                <TabPanel>
+                    <CardList
+                     data={popular}
                      btnName={"Add to Cart"}
                      ></CardList>
                 </TabPanel>

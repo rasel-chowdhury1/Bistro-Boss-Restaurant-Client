@@ -79,7 +79,7 @@ const AllUsers = () => {
                                 <th>{index+1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user.role === 'admin' ? 'admin' 
+                                <td>{user.roll === 'admin' ? 'admin' 
                                 : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-red-600 text-white "><FaUserShield /></button>}</td>
                                 <td><button className="btn btn-ghost bg-red-600 text-white "><FaTrashAlt /></button></td>
                               </tr>)

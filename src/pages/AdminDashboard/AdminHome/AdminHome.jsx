@@ -3,6 +3,7 @@ import { FaBook, FaDollarSign, FaUsers } from 'react-icons/fa';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, PieChart, Pie, Legend } from 'recharts';
 import useAuth from '../../../CustomHook/useAuth';
 import useAxiosSecure from '../../../CustomHook/useAxiosSecure';
+import { useEffect, useState } from 'react';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -10,22 +11,43 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const AdminHome = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [stats,setStats] = useState({});
+    const [chartData,setChartData] = useState([])
+    // const { data: stats = {} } = useQuery({
+    //     queryKey: ['admin-stats'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get('/admin-stats');
+    //         console.log(res)
+    //         return res.data;
+    //     }
+    // });
 
-    const { data: stats = {} } = useQuery({
-        queryKey: ['admin-stats'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/admin-stats');
-            return res.data;
-        }
-    });
+    useEffect(() =>{
+        fetch('http://localhost:3000/admin-stats')
+        .then(res => res.json())
+        .then(data => {
+            setStats(data)
+        })
+    },[])
 
-    const { data: chartData = [] } = useQuery({
-        queryKey: ['order-stats'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/order-stats');
-            return res.data;
-        }
-    })
+    useEffect(() =>{
+
+        fetch('http://localhost:3000/order-stats')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setChartData(data)
+        })
+    },[])
+
+    // const { data: chartData = [] } = useQuery({
+    //     queryKey: ['order-stats'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get('/order-stats');
+    //         console.log(res)
+    //         return res.data;
+    //     }
+    // })
 
     // custom shape for the bar chart
     const getPath = (x, y, width, height) => {
@@ -59,15 +81,19 @@ const AdminHome = () => {
         return {name: data.category, value: data.revenue}
     })
 
+    // console.log('stats value is ', stats)
+
     return (
-        <div>
-            <h2 className="text-3xl">
+        <div className='m-8'>
+            <h2 className="text-3xl my-6">
                 <span>Hi, Welcome </span>
+                <span className='font-bold text-orange-400'>
                 {
                     user?.displayName ? user.displayName : 'Back'
                 }
+                </span>
             </h2>
-            <div className="stats shadow">
+            <div className="stats shadow mx-auto">
 
                 <div className="stat">
                     <div className="stat-figure text-secondary">
@@ -93,7 +119,7 @@ const AdminHome = () => {
                         <FaBook className='text-3xl'></FaBook>
                     </div>
                     <div className="stat-title">Menu Items</div>
-                    <div className="stat-value">{stats.menuItems}</div>
+                    <div className="stat-value">{stats.products}</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
                 </div>
 
@@ -107,8 +133,9 @@ const AdminHome = () => {
                 </div>
 
             </div>
-            <div className="flex">
-                <div className="w-1/2">
+
+           <div className='flex flex-col md:flex-row mt-6'>
+            <div >
                     <BarChart
                         width={500}
                         height={300}
@@ -130,8 +157,8 @@ const AdminHome = () => {
                         </Bar>
                     </BarChart>
                 </div>
-                <div className="w-1/2">
-                    <PieChart width={400} height={400}>
+                <div >
+                    <PieChart width={500} height={400}>
                         <Pie
                             data={pieChartData}
                             cx="50%"
@@ -150,6 +177,7 @@ const AdminHome = () => {
                     </PieChart>
                 </div>
             </div>
+            
         </div>
     );
 };

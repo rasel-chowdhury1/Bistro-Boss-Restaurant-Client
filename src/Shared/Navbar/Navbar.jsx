@@ -40,13 +40,7 @@ const Navbar = () => {
                             {user ? (
                                 <>
                                     <li className="pl-3">{user?.displayName}</li>
-                                    <li>
-                                        <Link to='/profile' className="justify-between">
-                                            Profile
-                                            <span className="badge">New</span>
-                                        </Link>
-                                    </li>
-                                    <li>{isAdmin ? <><Link to='/admin'>Admin</Link></>:<><Link>User</Link></>}</li>
+                                    <li>{isAdmin ? <><Link to='/dashboard/adminhome'>Admin</Link></>:<><Link>User</Link></>}</li>
                                     <li><Link to='/dashboard/mycart'>Order</Link></li>
 
                                     <li onClick={Logout}><a>Log Out</a></li>
