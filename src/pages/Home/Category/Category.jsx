@@ -33,6 +33,7 @@ const Category = () => {
                 clickable: true,
                 }}
                 modules={[Pagination]}
+                initialSlide={2}
                 className="mySwiper mb-16"
             >
                 <SwiperSlide>

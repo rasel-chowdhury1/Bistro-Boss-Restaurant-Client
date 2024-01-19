@@ -13,6 +13,7 @@ const AdminHome = () => {
     const axiosSecure = useAxiosSecure();
     const [stats,setStats] = useState({});
     const [chartData,setChartData] = useState([])
+
     // const { data: stats = {} } = useQuery({
     //     queryKey: ['admin-stats'],
     //     queryFn: async () => {
@@ -26,6 +27,7 @@ const AdminHome = () => {
         fetch('http://localhost:3000/admin-stats')
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             setStats(data)
         })
     },[])

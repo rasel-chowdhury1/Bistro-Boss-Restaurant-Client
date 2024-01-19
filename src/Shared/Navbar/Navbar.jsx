@@ -9,12 +9,12 @@ const Navbar = () => {
     const {user,Logout} = useContext(AuthContext);
     const [isAdmin] = useAdmin();
     const [cart] = useCart();
-    // console.log(cart)
-    // console.log('user is - ',user)
+    console.log(cart)
+    console.log('user is - ',user)
     const navOptions = <>
        <li><Link to='/'>HOME</Link></li>
        <li><Link to="/contact">CONTACT US</Link></li>
-       <li><Link to={ isAdmin ? '/dashboard/adminhome' : '/dashboard/userhome'}>DASHBOARD</Link></li>
+       {user && <li><Link to={ isAdmin ? '/dashboard/adminhome' : '/dashboard/userhome'}>DASHBOARD</Link></li>}
        <li><Link to="/menu">OUR MENU</Link></li>
        <li><Link to="/shop/salad">OUR SHOP</Link></li>
        <li><Link to='/dashboard/mycart'>

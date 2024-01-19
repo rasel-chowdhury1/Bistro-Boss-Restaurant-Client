@@ -50,6 +50,7 @@ const Card = ({data,btn}) => {
               });
          }
     }
+    
     return (
         <div className="card  glass">
             <figure>
