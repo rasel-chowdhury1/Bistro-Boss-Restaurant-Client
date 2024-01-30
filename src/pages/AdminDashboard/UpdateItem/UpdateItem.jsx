@@ -1,67 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
-import useAxiosSecure from '../../../CustomHook/useAxiosSecure';
-import Swal from 'sweetalert2';
 
-
-const img_hosting_token = import.meta.env.VITE_Image_Upload_Token
-// console.log(img_hosting_token)
-
-const AddItem = () => {
-    const [axiosSecure] = useAxiosSecure()
-    // console.log("axiosSecure - ", axiosSecure)
-    const [error,setError] = useState('');
+const UpdateItem = () => {
     const { register, handleSubmit, formState: { errors },reset} = useForm();
-
-    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
-    
-    const onSubmit = data => {
-        console.log(data)
-        const formData = new FormData()
-        formData.append('image', data.image[0])
-
-        fetch(img_hosting_url, {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.json())
-        .then(imgResponse => {
-            console.log('this is image url data ',imgResponse)
-            if(imgResponse.success){
-                const imgURL = imgResponse.data.display_url;
-                const {name,category,recipe,price} = data;
-                const newItem = {name,price: parseFloat(price),category,recipe,image:imgURL}
-                console.log(newItem);
-
-                axiosSecure.post('/menu',newItem)
-                .then(data =>{
-                    if(data.data.insertedId){
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Successfully Added Item",
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                          reset()
-                    }
-                })
-            }
-            else{
-               setError(imgResponse.error.message)
-            }
-        })
-    };
-    console.log(errors);
-
     return (
         <div className='w-full px-10'>
             <Helmet title='Bistro Boss || Add Item'/>
-            <SectionTitle subHeading={"What's new"} heading={"Add an Item"}/>
+            <SectionTitle subHeading={"Fillup Form"} heading={"Update Item "}/>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form >
                 <label className="form-control w-full my-4">
                     <div className="label">
                         <span className="label-text font-semibold">Recipe name*</span>
@@ -111,7 +60,7 @@ const AddItem = () => {
                     </div>
                     <input {...register("image", { required: true })}
                     type="file" className="file-input file-input-bordered w-full max-w-xs" />
-                    <p className=''>{error}</p>
+                    {/* <p className=''>{error}</p> */}
                 </label>
 
                 <input type="submit" value="Add Item" className='btn btn-sm mt-4'/>
@@ -121,4 +70,4 @@ const AddItem = () => {
     );
 };
 
-export default AddItem;
+export default UpdateItem;

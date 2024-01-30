@@ -5,6 +5,7 @@ import { FaAngleDoubleRight, FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import useAxiosSecure from './../../../CustomHook/useAxiosSecure';
 import { useForm } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
@@ -122,7 +123,7 @@ const ManageItem = () => {
                             <td>{item.category}</td>
                             <td>${item.price}</td>
                             <td>
-                               <button className="btn btn-ghost btn-xs text-xl text-orange-400"><FaEdit /></button>
+                               <NavLink to="/dashboard/updateItem" className="btn btn-ghost btn-xs text-xl text-orange-400"><FaEdit /></NavLink>
                             </td>
                             <td>
                             <button onClick={()=>handleDeleteButton(item._id)} className="btn btn-ghost btn-xs text-xl text-orange-400"><FaTrashAlt /></button>

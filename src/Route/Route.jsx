@@ -25,6 +25,7 @@ import ManageBooking from "../pages/Dashboard/ManageBooking/ManageBooking";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import ErrrorPage from "../pages/ErrrorPage/ErrrorPage";
 import Reservation from "../pages/Dashboard/Reservation/Reservation";
+import UpdateItem from "../pages/AdminDashboard/UpdateItem/UpdateItem";
 
   const router = createBrowserRouter([
     {
@@ -110,6 +111,10 @@ import Reservation from "../pages/Dashboard/Reservation/Reservation";
         {
           path: "manageItems",
           element: <AdminRoute><ManageItem></ManageItem></AdminRoute>
+        },
+        {
+          path: "updateItem",
+          element: <AdminRoute><UpdateItem/></AdminRoute>
         }
       ]
     },
