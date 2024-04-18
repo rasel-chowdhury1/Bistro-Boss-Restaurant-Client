@@ -37,7 +37,7 @@ const ContactUs = () => {
     return (
         <div>
             <Helmet>
-            <title>Bistro Boss || ContactUs</title>
+            <title>Quick Food || ContactUs</title>
             </Helmet>
             <BannerSection
                 img={img}

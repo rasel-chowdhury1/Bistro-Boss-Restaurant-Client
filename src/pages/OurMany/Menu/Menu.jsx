@@ -14,7 +14,7 @@ const Menu = () => {
     return (
         <>
         <Helmet>
-            <title>Bistro Boss || Menu</title>
+            <title>Quick Food || Menu</title>
         </Helmet>
         <BannerSection
             img={menubannerImg}

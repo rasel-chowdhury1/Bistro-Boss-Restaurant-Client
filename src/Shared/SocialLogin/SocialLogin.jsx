@@ -19,7 +19,7 @@ const SocialLogin = () => {
         .then(result =>{
             const loggedInUser = result.user;
             const saveUser = {name: loggedInUser.displayName, email: loggedInUser.email}
-            fetch('http://localhost:3000/users',{
+            fetch('https://bistro-boss-restaurant-server-lovat.vercel.app/users',{
                     method: "POST",
                     headers: {
                         "content-type": 'application/json'

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProviders/AuthProviders";
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://bistro-boss-restaurant-server-lovat.vercel.app'
 })
 
 const useAxiosSecure = () => {

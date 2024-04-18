@@ -35,7 +35,7 @@ const AddItem = () => {
                 const newItem = {name,price: parseFloat(price),category,recipe,image:imgURL}
                 console.log(newItem);
 
-                axiosSecure.post('/menu',newItem)
+                axiosSecure.post('/menus',newItem)
                 .then(data =>{
                     if(data.data.insertedId){
                         Swal.fire({
@@ -58,7 +58,7 @@ const AddItem = () => {
 
     return (
         <div className='w-full px-10'>
-            <Helmet title='Bistro Boss || Add Item'/>
+            <Helmet title='Quick Food || Add Item'/>
             <SectionTitle subHeading={"What's new"} heading={"Add an Item"}/>
 
             <form onSubmit={handleSubmit(onSubmit)}>

@@ -24,7 +24,7 @@ const AdminHome = () => {
     // });
 
     useEffect(() =>{
-        fetch('http://localhost:3000/admin-stats')
+        fetch('https://bistro-boss-restaurant-server-lovat.vercel.app/admin-stats')
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -34,7 +34,7 @@ const AdminHome = () => {
 
     useEffect(() =>{
 
-        fetch('http://localhost:3000/order-stats')
+        fetch('https://bistro-boss-restaurant-server-lovat.vercel.app/order-stats')
         .then(res => res.json())
         .then(data => {
             console.log(data)

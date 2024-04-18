@@ -7,7 +7,7 @@ const UpdateItem = () => {
     const { register, handleSubmit, formState: { errors },reset} = useForm();
     return (
         <div className='w-full px-10'>
-            <Helmet title='Bistro Boss || Add Item'/>
+            <Helmet title='Quick Food || Add Item'/>
             <SectionTitle subHeading={"Fillup Form"} heading={"Update Item "}/>
 
             <form >

@@ -23,7 +23,7 @@ const ManageBooking = () => {
         })
         .then(result =>{
             if(result.isConfirmed){
-                fetch(`http://localhost:3000/bookings/${id}`,{
+                fetch(`https://bistro-boss-restaurant-server-lovat.vercel.app/bookings/${id}`,{
                     method: "DELETE"
                 })
                 .then(res => res.json())
@@ -48,7 +48,7 @@ const ManageBooking = () => {
         <div>
             <SectionTitle subHeading={"Excellent Ambience"} heading={"MY BOOKINGS"}/>
             <Helmet>
-                <title>Bistro Boss || Manage Booking</title>
+                <title>Quick Food || Manage Booking</title>
             </Helmet>
             <div className='w-4/5 mx-auto p-4'>
                 <div className='uppercase font-semibold h-[60px] flex justify-evenly items-center'>

@@ -30,7 +30,8 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email,password)
+        console.log('this is email-> ',email)
+        console.log('this is password-> ',password)
 
         SignIn(email,password)
         .then(result =>{

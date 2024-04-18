@@ -23,7 +23,7 @@ const MyCart = () => {
         })
         .then(result =>{
             if(result.isConfirmed){
-                fetch(`http://localhost:3000/carts/${id}`,{
+                fetch(`https://bistro-boss-restaurant-server-lovat.vercel.app/carts/${id}`,{
                     method: "DELETE"
                 })
                 .then(res => res.json())
@@ -46,7 +46,7 @@ const MyCart = () => {
     return (
         <div className='w-full'>
             <Helmet>
-                <title>Bistro Boss || My Cart</title>
+                <title>Quick Food || My Cart</title>
             </Helmet>
             <SectionTitle subHeading={"My Cart"} heading={"WANNA ADD MORE?"}/>
             <div className='w-4/5 mx-auto p-4'>

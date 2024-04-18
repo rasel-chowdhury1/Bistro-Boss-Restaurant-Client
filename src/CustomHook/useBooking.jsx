@@ -10,7 +10,7 @@ const useBooking = () => {
      queryKey: ['cart',user?.email],
      enabled: !loading,
      queryFn: async () =>{
-         const response = await fetch(`http://localhost:3000/bookings?email=${user.email}`, {
+         const response = await fetch(`https://bistro-boss-restaurant-server-lovat.vercel.app/bookings?email=${user.email}`, {
              headers: {
                  authorization: `bearer ${token}`
              }

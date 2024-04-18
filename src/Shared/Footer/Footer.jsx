@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className="footer p-10 bg-neutral text-neutral-content">
           <aside>
             <img src="logo.png" alt="" className='w-[100px]' />
-            <p>Bistro Boss Restaurant</p>
+            <p>Quick Food Restaurant</p>
           </aside> 
           <nav>
             <header className="footer-title">Services</header> 
@@ -32,7 +32,7 @@ const Footer = () => {
 
        <footer className="footer footer-center p-4 bg-base-300 text-base-content">
           <aside>
-            <p>Copyright © 2024 - All right reserved by Bistro Boss Restaurant</p>
+            <p>Copyright © 2024 - All right reserved by Quick Food Restaurant</p>
           </aside>
        </footer>
 

@@ -11,14 +11,14 @@ const AllUsers = () => {
 
     // const {refetch,data: users=[]} = useQuery({
     //     queryFn: async () =>{
-    //         const response = await fetch("http://localhost:3000/users")
+    //         const response = await fetch("https://bistro-boss-restaurant-server-lovat.vercel.app/users")
     //         return response.json();
     //     }
     //    })
 
        const {data: users=[],refetch} = useQuery({
         queryFn: async () =>{
-            const response = await fetch("http://localhost:3000/users", {
+            const response = await fetch("https://bistro-boss-restaurant-server-lovat.vercel.app/users", {
               headers: {
                 authorization: `bearer ${token}`
               }
@@ -31,7 +31,7 @@ const AllUsers = () => {
 
     const handleMakeAdmin = user => {
         console.log(user._id)
-        fetch(`http://localhost:3000/users/admin/${user._id}`, {
+        fetch(`https://bistro-boss-restaurant-server-lovat.vercel.app/users/admin/${user._id}`, {
           method: 'PATCH'
         })
         .then(res => res.json())
@@ -53,7 +53,7 @@ const AllUsers = () => {
     return (
         <div >
             <Helmet>
-                <title>Bistro Boss || All Users</title>
+                <title>Quick Food || All Users</title>
             </Helmet>
             <div >
               <SectionTitle subHeading={"How Many?"} heading={"Manage all Users"}/>

@@ -50,7 +50,7 @@ const Register = () => {
             .then( () =>{
                 const saveUser = {name: name, email: email, roll: type}
                 
-                fetch('http://localhost:3000/users',{
+                fetch('https://bistro-boss-restaurant-server-lovat.vercel.app/users',{
                     method: "POST",
                     headers: {
                         "content-type": 'application/json'
@@ -152,7 +152,7 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
     );
 };
 
